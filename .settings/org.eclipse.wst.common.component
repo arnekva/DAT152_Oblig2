@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="DAT152_Oblig2">
+    <wb-module deploy-name="TaskOrganizer_Group_30">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="DAT152_Oblig2"/>
-        <property name="java-output-path" value="/DAT152_Oblig2/build/classes"/>
+        <property name="java-output-path" value="/TaskOrganizer_Group_30/build/classes"/>
+        <property name="context-root" value="TaskOrganizer_Group_30"/>
     </wb-module>
 </project-modules>
