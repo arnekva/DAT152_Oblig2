@@ -12,14 +12,14 @@ class GuiHandler {
 		row.insertCell(0).innerHTML = task.id;
 		row.insertCell(1).innerHTML = task.title;
 		row.insertCell(2).innerHTML = task.status;
-		
+		row.className += "radene"
 		 var selectList = document.createElement("select");
-		   selectList.setAttribute("id", "mySelect"+i);
+		   selectList.setAttribute("id", i);
 		   selectList.setAttribute("class", "statusChanger");
 
 		   for (var j = 0; j < statuses.length; j++) {
 		     var option = document.createElement("option");
-		     option.setAttribute("value", task.id);
+		     option.setAttribute("value", j);
 		     option.text = statuses[j];
 		     
 		     selectList.appendChild(option);
@@ -30,10 +30,9 @@ class GuiHandler {
 		
 	}
 
-	editRow(old, newtask){
-		let row = old.parenNode.parenNode.rowIndex;
-		row.insertCell(0).innerHTML = newtask.id;
-		row.insertCell(1).innerHTML = newtask.title;
+	editRow(e, newtask){
+		console.log(e)
+		let row = e.parentNode.parentNode.rowIndex;
 		row.insertCell(2).innerHTML = newtask.status;
 	}
 
@@ -48,11 +47,22 @@ const gui = new GuiHandler()
 
 window.onload = function()
 {setupStatus()
+	
 	let test = document.getElementsByClassName('statusChanger')
+	let radene = document.getElementsByClassName('radene')
+	var x = document.getElementById("maintable").rows;
+	console.log(radene.length)
 	console.log(test.length)
 	for (var i = 0; i < test.length; i++) {
+		console.log(test[i])
+		console.log(radene[i])
 	    test[i].onchange = function () {
-	        
+			let index = this.id
+			console.log("index: " + index)
+			console.log(this.value)
+			
+			x[index].cells[2].innerHTML = this.options.text
+	       //editRow(this.value);
 	    }
 	}
 
