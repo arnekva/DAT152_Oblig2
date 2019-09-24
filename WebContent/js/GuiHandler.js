@@ -6,16 +6,35 @@ class GuiHandler {
 		this.table = document.getElementById('maintable');
 	}
 
-	addRow(task) {
+	addRow(i, task, tasks, statuses) {
 		let row = this.table.insertRow(-1);
 
 		row.insertCell(0).innerHTML = task.id;
 		row.insertCell(1).innerHTML = task.title;
 		row.insertCell(2).innerHTML = task.status;
+		
+		 var selectList = document.createElement("select");
+		   selectList.setAttribute("id", "mySelect"+i);
+		   selectList.setAttribute("class", "statusChanger");
+
+		   for (var j = 0; j < statuses.length; j++) {
+		     var option = document.createElement("option");
+		     option.setAttribute("value", task.id);
+		     option.text = statuses[j];
+		     
+		     selectList.appendChild(option);
+		   }
+		   var cell = row.insertCell(3);
+		   cell.appendChild(selectList);
+	     
+		
 	}
 
-	editRow(e){
-		let row = e.parenNode.parenNode.rowIndex;
+	editRow(old, newtask){
+		let row = old.parenNode.parenNode.rowIndex;
+		row.insertCell(0).innerHTML = newtask.id;
+		row.insertCell(1).innerHTML = newtask.title;
+		row.insertCell(2).innerHTML = newtask.status;
 	}
 
 	deleteRow(i) {
@@ -28,32 +47,45 @@ class GuiHandler {
 const gui = new GuiHandler()
 
 window.onload = function()
-{setupStatus()};
+{setupStatus()
+	let test = document.getElementsByClassName('statusChanger')
+	console.log(test.length)
+	for (var i = 0; i < test.length; i++) {
+	    test[i].onchange = function () {
+	        
+	    }
+	}
+
+
+};
 document.getElementById("newtaskbtn").onclick = function()
 {addNewTask()};
+
+
 
 function addNewTask(newtask){
 	gui.addRow(newtask);
 }
-function updateTask(newtask){
-	gui.editrow(newtask);
+function updateTask(oldtask, newtask){
+	gui.editrow(oldtask, newtask);
 }
 
 function setupStatus() {
 	
 	console.log("step3");
 	
-	const statuses = ["WAITING","ACTIVE","DONE"]
+	const statuses = ["WAITING","ACTIVE","DONE","TEST"]
 	const tasks = [
 	    {id:1,title:"Paint roof",status:"WAITING"},
 	    {id:2,title:"Clean floor",status:"DONE"},
 	    {id:3,title:"Wash windows",status:"ACTIVE"}
 	]
  for(let i =0; i<tasks.length;i++){
-	 gui.addRow(tasks[i]);
+	 gui.addRow(i, tasks[i], tasks, statuses);
  }
 	
 }
+
 
 function testAvHtmlInsert() {
 	
