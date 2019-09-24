@@ -24,7 +24,6 @@ class GuiHandler {
 			var tbody = document.createElement("tbody");
 			tbody.setAttribute("id", "tableBody");
 			tabell.appendChild(tbody);
-			console.log("step4");
 		}
 		console.log("step2");
 		var tbody2 = document.getElementById("tableBody");
