@@ -30,10 +30,11 @@ class GuiHandler {
 		
 	}
 
-	editRow(e, newtask){
-		console.log(e)
-		let row = e.parentNode.parentNode.rowIndex;
-		row.insertCell(2).innerHTML = newtask.status;
+	editRow(x, me){
+		console.log("index: " + me.id)
+		console.log(me.value)
+		
+		x[me.id].cells[2].innerHTML = statuses[me.value]
 	}
 
 	deleteRow(i) {
@@ -57,11 +58,7 @@ window.onload = function()
 		console.log(test[i])
 		console.log(radene[i])
 	    test[i].onchange = function () {
-			let index = this.id
-			console.log("index: " + index)
-			console.log(this.value)
-			
-			x[index].cells[2].innerHTML = statuses[this.value]
+			gui.editRow(x, this)
 	       //editRow(this.value);
 	    }
 	}
