@@ -6,47 +6,20 @@ class GuiHandler {
 		this.table = document.getElementById('maintable');
 	}
 
-	addRow(i, task, tasks, statuses) {
+	addRow(task) {
 		let row = this.table.insertRow(-1);
-
 		row.insertCell(0).innerHTML = task.id;
 		row.insertCell(1).innerHTML = task.title;
 		row.insertCell(2).innerHTML = task.status;
+		row.insertCell(3).innerHTML = '<button id="deleteBtn-' + task.id + '">Delete</button>';
 		
-		row.className += "radene"
-		 var selectList = document.createElement("select");
-		   selectList.setAttribute("id", i);
-		   selectList.setAttribute("class", "statusChanger");
-
-		   for (var j = 0; j < statuses.length; j++) {
-		     var option = document.createElement("option");
-		     option.setAttribute("value", j);
-		     option.text = statuses[j];
-		     
-		     selectList.appendChild(option);
-		   }
-		   var cell = row.insertCell(3);
-		   cell.appendChild(selectList);
-		   row.insertCell(4).innerHTML = '<button id="deleteBtn-' + task.id + '">Delete</button>';
-	     
-		   document.getElementById("deleteBtn-" + task.id).addEventListener("click", (e) => {
-			   var txt;
-			   var  r = window.confirm("Do you want to delete this task?")
-			   if (r==true){
-				   console.log("Task Deleted")
-				   this.deleteRow(row.rowIndex);
-			   }else{
-				   console.log("Deletion canceled")
-			   }
-			}, true);
-		
+		document.getElementById("deleteBtn-" + task.id).addEventListener("click", (e) => {
+			this.deleteRow(row.rowIndex);
+		}, true);
 	}
 
-	editRow(x, me){
-		console.log("index: " + me.id)
-		console.log(me.value)
-		
-		x[me.id].cells[2].innerHTML = statuses[me.value]
+	editRow(e){
+		let row = e.parenNode.parenNode.rowIndex;
 	}
 
 	deleteRow(i) {
@@ -59,53 +32,36 @@ class GuiHandler {
 const gui = new GuiHandler()
 
 window.onload = function()
-{setupStatus()
-	
-	let test = document.getElementsByClassName('statusChanger')
-	let radene = document.getElementsByClassName('radene')
-	var x = document.getElementById("maintable").rows;
-	console.log(radene.length)
-	console.log(test.length)
-	for (var i = 0; i < test.length; i++) {
-		console.log(test[i])
-		console.log(radene[i])
-	    test[i].onchange = function () {
-			gui.editRow(x, this)
-	       //editRow(this.value);
-	    }
-	}
-
-
-};
+{setupStatus()};
 document.getElementById("newtaskbtn").onclick = function()
 {addNewTask()};
-
-
 
 function addNewTask(newtask){
 	gui.addRow(newtask);
 }
-function updateTask(oldtask, newtask){
-	gui.editrow(oldtask, newtask);
+function updateTask(newtask){
+	gui.editrow(newtask);
 }
 
-const statuses = ["WAITING","ACTIVE","DONE"]
+/*function removeTask(task){
+	
+}*/
+
 function setupStatus() {
 	
 	console.log("step3");
 	
-	
+	const statuses = ["WAITING","ACTIVE","DONE"]
 	const tasks = [
 	    {id:1,title:"Paint roof",status:"WAITING"},
 	    {id:2,title:"Clean floor",status:"DONE"},
 	    {id:3,title:"Wash windows",status:"ACTIVE"}
 	]
  for(let i =0; i<tasks.length;i++){
-	 gui.addRow(i, tasks[i], tasks, statuses);
+	 gui.addRow(tasks[i]);
  }
 	
 }
-
 
 function testAvHtmlInsert() {
 	
