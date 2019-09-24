@@ -12,6 +12,7 @@ class GuiHandler {
 		row.insertCell(0).innerHTML = task.id;
 		row.insertCell(1).innerHTML = task.title;
 		row.insertCell(2).innerHTML = task.status;
+		
 		row.className += "radene"
 		 var selectList = document.createElement("select");
 		   selectList.setAttribute("id", i);
@@ -26,7 +27,11 @@ class GuiHandler {
 		   }
 		   var cell = row.insertCell(3);
 		   cell.appendChild(selectList);
+		   row.insertCell(4).innerHTML = '<button id="deleteBtn-' + task.id + '">Delete</button>';
 	     
+		   document.getElementById("deleteBtn-" + task.id).addEventListener("click", (e) => {
+				this.deleteRow(row.rowIndex);
+			}, true);
 		
 	}
 
