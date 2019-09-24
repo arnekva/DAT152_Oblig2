@@ -30,10 +30,11 @@ class GuiHandler {
 		
 	}
 
-	editRow(e, newtask){
-		console.log(e)
-		let row = e.parentNode.parentNode.rowIndex;
-		row.insertCell(2).innerHTML = newtask.status;
+	editRow(x, me){
+		console.log("index: " + me.id)
+		console.log(me.value)
+		
+		x[me.id].cells[2].innerHTML = statuses[me.value]
 	}
 
 	deleteRow(i) {
@@ -57,11 +58,7 @@ window.onload = function()
 		console.log(test[i])
 		console.log(radene[i])
 	    test[i].onchange = function () {
-			let index = this.id
-			console.log("index: " + index)
-			console.log(this.value)
-			
-			x[index].cells[2].innerHTML = this.options.text
+			gui.editRow(x, this)
 	       //editRow(this.value);
 	    }
 	}
@@ -80,11 +77,12 @@ function updateTask(oldtask, newtask){
 	gui.editrow(oldtask, newtask);
 }
 
+const statuses = ["WAITING","ACTIVE","DONE"]
 function setupStatus() {
 	
 	console.log("step3");
 	
-	const statuses = ["WAITING","ACTIVE","DONE","TEST"]
+	
 	const tasks = [
 	    {id:1,title:"Paint roof",status:"WAITING"},
 	    {id:2,title:"Clean floor",status:"DONE"},
