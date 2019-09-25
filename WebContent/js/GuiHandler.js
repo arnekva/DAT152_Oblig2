@@ -46,8 +46,14 @@ class GuiHandler {
 	editRow(x, me){
 		console.log("index: " + me.id)
 		console.log(me.value)
-
-		x[me.id].cells[2].innerHTML = statuses[me.value]
+		   var  r = window.confirm("Set " + x[me.id].cells[1].innerHTML + " to " + statuses[me.value])
+		   if (r==true){
+			   console.log("Status changed")
+			   x[me.id].cells[2].innerHTML = statuses[me.value]
+		   }else{
+			   console.log("Cancelled by user. If not then something went really fu**ing wrong.")
+		   }
+		
 	}
 
 	deleteRow(i) {
