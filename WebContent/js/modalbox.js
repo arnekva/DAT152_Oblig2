@@ -10,12 +10,12 @@ class ModalBox{
 		
 		let modalcontent = document.getElementsByClassName("modalcontent")[0]
 		
+		
         this.prepareInputFields("Title", "title", modalcontent)
-        this.prepareInputFields("Status", "status", modalcontent)
+        this.appendOptions("Status", "status", modalcontent)	
         
         modalcontent.appendChild(document.createElement("br"))
         this.appendAddtaskButton(modalcontent);
-        this.appendUpdatetaskButton(modalcontent);
 		
 		btn.onclick = function(){
 			modal.style.display = "block"
@@ -49,6 +49,9 @@ class ModalBox{
 	        parent.appendChild(outerDiv);
 	    }
 	 
+	 
+	 
+	 
 	 fillInputFields(inputData) {
 	        document.getElementById("title").value = inputData.title;
 	    }
@@ -60,19 +63,33 @@ class ModalBox{
 	        addbtn.textContent = "Add task";
 
 	        // Hidden by default
-	        addbtn.style.display = "none";
 	        modalcontent.appendChild(addbtn);
 	    }
-	
-	 appendUpdatetaskButton(modalcontent) {
-	        var btn = document.createElement("button");
-	        btn.id = "modal-update-button";
-	        btn.textContent = "Update task";
+	 
+	 appendOptions(labelText, id, parent){
 
-	        // Hidden by default
-	        btn.style.display = "none";
-	        modalcontent.appendChild(btn);
-	    }
+	        var selectList = document.createElement("select");
+			   selectList.setAttribute("id", id);
+			   selectList.setAttribute("class", "statusChooser");
+
+			   for (var j = 0; j < statuses.length; j++) {
+			     var option = document.createElement("option");
+			     option.setAttribute("value", j);
+			     option.text = statuses[j];
+
+			     selectList.appendChild(option);
+			   }
+			   
+			   var outerDiv = document.createElement("div");
+
+		        var label = document.createElement("label");
+		        label.textContent = labelText + ": ";
+		        label.htmlFor = id;
+
+	        outerDiv.appendChild(label);
+	        outerDiv.appendChild(selectList);
+	        parent.appendChild(outerDiv);
+	 }
 	 
 	
 }

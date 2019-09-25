@@ -107,7 +107,6 @@ function updateTask(oldtask, newtask){
 	gui.editrow(oldtask, newtask);
 }
 
-const statuses = ["WAITING","ACTIVE","DONE"]
 function setupStatus() {
 
 	console.log("step3");
