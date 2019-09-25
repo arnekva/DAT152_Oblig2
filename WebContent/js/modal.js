@@ -84,10 +84,9 @@ class Modal {
             // Hide the modal
             this.modal.style.display = "none";
             // Clear the input fields
-            document.getElementById("firstname").value = "";
-            document.getElementById("lastname").value = "";
-            document.getElementById("address").value = "";
-            document.getElementById("phone").value = "";
+            document.getElementById("id").value = "";
+            document.getElementById("title").value = "";
+            document.getElementById("status").value = "";
             // Hide the buttons
             document.getElementById("modal-add-button").style.display = "none";
             document.getElementById("modal-update-button").style.display = "none";
