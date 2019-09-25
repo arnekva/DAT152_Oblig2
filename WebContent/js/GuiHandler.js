@@ -4,6 +4,7 @@ class GuiHandler {
 
 	constructor() {
 		this.table = document.getElementById('task_table');
+		this.modal = new ModalBox()
 	}
 
 	addRow(i, task, tasks, statuses) {
@@ -86,8 +87,8 @@ window.onload = function()
 
 
 };
-document.getElementById("newtaskbtn").onclick = function()
-{addNewTask()};
+//document.getElementById("newtaskbtn").onclick = function()
+//{addNewTask()};
 
 
 
