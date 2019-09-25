@@ -14,8 +14,15 @@ class GuiHandler {
 		row.insertCell(3).innerHTML = '<button id="deleteBtn-' + task.id + '">Delete</button>';
 		
 		document.getElementById("deleteBtn-" + task.id).addEventListener("click", (e) => {
-			this.deleteRow(row.rowIndex);
-		}, true);
+			   var txt;
+			   var  r = window.confirm("Do you want to delete this task?")
+			   if (r==true){
+				   console.log("Task Deleted")
+				   removeTask(row.rowIndex);
+			   }else{
+				   console.log("Deletion canceled")
+			   }
+			}, true);
 	}
 
 	editRow(e){
@@ -42,6 +49,9 @@ function addNewTask(newtask){
 function updateTask(newtask){
 	gui.editrow(newtask);
 }
+function removeTask(id){
+	gui.deleteRow(id);
+}
 
 /*function removeTask(task){
 	
@@ -60,6 +70,9 @@ function setupStatus() {
  for(let i =0; i<tasks.length;i++){
 	 gui.addRow(tasks[i]);
  }
+	
+	
+	
 	
 }
 
