@@ -89,9 +89,11 @@ window.onload = function()
 
 	       //editRow(this.value);
 	    }
+		
 	}
 
-
+	document.getElementById('message').innerHTML = "Found " + x.length + " tasks."
+	console.log("tasks found")
 };
 //document.getElementById("newtaskbtn").onclick = function()
 //{addNewTask()};
