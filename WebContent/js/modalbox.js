@@ -23,8 +23,11 @@ class ModalBox{
 			let alltasks = document.getElementsByClassName('statusChanger')
 			let titletxt = document.getElementById('title').value
 			let statustxt = document.getElementById('status').value
-			let task = {id: alltasks.length+1,title: titletxt, status: statustxt}
+			let task = {id: alltasks.length+1,title: titletxt, status: gui.statuses[statustxt]}
 			console.log(task)
+			let allstatuses = statuses
+			gui.addRow(4, task, allstatuses)
+			modal.style.display = "none"
 		}
 		
 		btn.onclick = function(){
@@ -106,6 +109,4 @@ class ModalBox{
 	 
 
 }
-
-
-	
+const modal = new ModalBox()

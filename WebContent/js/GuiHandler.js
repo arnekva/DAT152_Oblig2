@@ -17,7 +17,14 @@ class GuiHandler {
 		 var selectList = document.createElement("select");
 		   selectList.setAttribute("id", i);
 		   selectList.setAttribute("class", "statusChanger");
+		   
+		   var option = document.createElement("option");
+		     option.setAttribute("value", "");
+		     option.text = "<Modify>"
+		     option.setAttribute("selected", "selected")
+		     option.setAttribute("disabled", "disabled")
 
+		     selectList.appendChild(option);
 		   for (var j = 0; j < this.statuses.length; j++) {
 		     var option = document.createElement("option");
 		     option.setAttribute("value", j);
@@ -39,6 +46,7 @@ class GuiHandler {
 				   console.log("Deletion canceled")
 			   }
 			}, true);
+		   updateStatusChanger()
 
 	}
 	
@@ -98,6 +106,15 @@ window.onload = function()
 //document.getElementById("newtaskbtn").onclick = function()
 //{addNewTask()};
 
+function updateStatusChanger(){
+	let test = document.getElementsByClassName('statusChanger')
+	for (var i = 0; i < test.length; i++) {
+	    test[i].onchange = function () {
+			gui.editRow(x, this)
+	    }
+		
+	}
+}
 
 
 function addNewTask(newtask){
