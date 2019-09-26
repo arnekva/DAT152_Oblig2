@@ -34,7 +34,7 @@ class GuiHandler {
 		   }
 		   var cell = row.insertCell(3);
 		   cell.appendChild(selectList);
-		   row.insertCell(4).innerHTML = '<button id="deleteBtn-' + task.id + '">Delete</button>';
+		   row.insertCell(4).innerHTML = '<button id="deleteBtn-' + task.id + '" class="delbtn">Delete</button>';
 
 		   document.getElementById("deleteBtn-" + task.id).addEventListener("click", (e) => {
 			   var txt;
@@ -100,7 +100,7 @@ window.onload = function()
 		
 	}
 
-	document.getElementById('message').innerHTML = "Found " + x.length + " tasks."
+	document.getElementById('message').innerHTML = "Found " + allTasks.length + " tasks."
 	console.log("tasks found")
 };
 //document.getElementById("newtaskbtn").onclick = function()
@@ -118,9 +118,12 @@ function updateStatusChanger(){
 }
 function updateId(){
 	let alltasks = document.getElementsByClassName('radene')
+	let allDelbtn = document.getElementsByClassName('delbtn')
 	for(let i = 0; i<alltasks.length; i++){
 		console.log(alltasks[i])
 		alltasks[i].cells[0].innerHTML = i+1
+		let math = i+1
+		allDelbtn[i].id = 'deleteBtn-' + math;
 	}
 }
 
