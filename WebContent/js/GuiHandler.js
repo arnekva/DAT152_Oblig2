@@ -4,10 +4,9 @@ class GuiHandler {
 
 	constructor() {
 		this.table = document.getElementById('task_table');
-		this.modal = new ModalBox()
 	}
 
-	addRow(i, task, tasks, statuses) {
+	addRow(i, task, statuses) {
 		let row = this.table.insertRow(-1);
 
 		row.insertCell(0).innerHTML = task.id;
@@ -42,6 +41,7 @@ class GuiHandler {
 			}, true);
 
 	}
+	
 
 	editRow(x, me){
 		console.log("index: " + me.id)
@@ -118,7 +118,7 @@ function setupStatus() {
 	    {id:3,title:"Wash windows",status:"ACTIVE"}
 	]
  for(let i =0; i<tasks.length;i++){
-	 gui.addRow(i, tasks[i], tasks, statuses);
+	 gui.addRow(i, tasks[i], statuses);
  }
 
 }

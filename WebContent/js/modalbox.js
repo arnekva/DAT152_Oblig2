@@ -17,6 +17,16 @@ class ModalBox{
         modalcontent.appendChild(document.createElement("br"))
         this.appendAddtaskButton(modalcontent);
 		
+		let addbtn = document.getElementById('modal-add-button')
+		
+		addbtn.onclick = function(){
+			let alltasks = document.getElementsByClassName('statusChanger')
+			let titletxt = document.getElementById('title').value
+			let statustxt = document.getElementById('status').value
+			let task = {id: alltasks.length+1,title: titletxt, status: statustxt}
+			console.log(task)
+		}
+		
 		btn.onclick = function(){
 			modal.style.display = "block"
 				console.log("test")
@@ -24,15 +34,19 @@ class ModalBox{
 		
 		span.onclick = function(){
 			modal.style.display = "none"
+			document.getElementById('title').value = ""
+
 		}
 		
 		window.onclick = function(event){
 			if(event.target == modal){
 				modal.style.display = "none"
+				document.getElementById('title').value = ""
 			}
 			
 		}
 	}
+
 	
 	 prepareInputFields(labelText, id, parent) {
 	        var outerDiv = document.createElement("div");
@@ -48,7 +62,6 @@ class ModalBox{
 	        outerDiv.appendChild(input);
 	        parent.appendChild(outerDiv);
 	    }
-	 
 	 
 	 
 	 
@@ -91,7 +104,8 @@ class ModalBox{
 	        parent.appendChild(outerDiv);
 	 }
 	 
-	
+
 }
+
 
 	
