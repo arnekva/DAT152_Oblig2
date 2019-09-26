@@ -25,8 +25,7 @@ class ModalBox{
 			let statustxt = document.getElementById('status').value
 			let task = {id: alltasks.length+1,title: titletxt, status: gui.statuses[statustxt]}
 			console.log(task)
-			let allstatuses = statuses
-			gui.addRow(4, task, allstatuses)
+			gui.addRow(task.id, task)
 			modal.style.display = "none"
 		}
 		

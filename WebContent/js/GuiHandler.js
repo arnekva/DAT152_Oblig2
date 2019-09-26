@@ -47,17 +47,16 @@ class GuiHandler {
 			   }
 			}, true);
 		   updateStatusChanger()
-
 	}
 	
 
-	editRow(x, me){
-		console.log("index: " + me.id)
+	editRow(allTasks, me){
+		console.log("index: " + me.id-1)
 		console.log(me.value)
-		   var  r = window.confirm("Set " + x[me.id].cells[1].innerHTML + " to " + this.statuses[me.value])
+		   var  r = window.confirm("Set " + allTasks[me.id-1].cells[1].innerHTML + " to " + this.statuses[me.value])
 		   if (r==true){
 			   console.log("Status changed")
-			   x[me.id].cells[2].innerHTML = this.statuses[me.value]
+			   allTasks[me.id-1].cells[2].innerHTML = this.statuses[me.value]
 		   }else{
 			   console.log("Cancelled by user. If not then something went really fu**ing wrong.")
 		   }
@@ -83,7 +82,7 @@ window.onload = function()
 
 	let test = document.getElementsByClassName('statusChanger')
 	let radene = document.getElementsByClassName('radene')
-	var x = document.getElementById("task_table").rows;
+	var allTasks = document.getElementById("task_table").rows;
 	console.log(radene.length)
 	console.log(test.length)
 	for (var i = 0; i < test.length; i++) {
@@ -92,7 +91,7 @@ window.onload = function()
 	    test[i].onchange = function () {
 
 
-						gui.editRow(x, this)
+						gui.editRow(allTasks, this)
 
 
 	       //editRow(this.value);
@@ -108,6 +107,7 @@ window.onload = function()
 
 function updateStatusChanger(){
 	let test = document.getElementsByClassName('statusChanger')
+	var x = document.getElementById("task_table").rows;
 	for (var i = 0; i < test.length; i++) {
 	    test[i].onchange = function () {
 			gui.editRow(x, this)
@@ -135,8 +135,8 @@ function setupStatus() {
 	    {id:3,title:"Wash windows",status:"ACTIVE"}
 	]
 	gui.statuses = statuses
- for(let i =0; i<tasks.length;i++){
-	 gui.addRow(i, tasks[i]);
+ for(let i =1; i<=tasks.length;i++){
+	 gui.addRow(i, tasks[i-1]);
  }
 
 }
