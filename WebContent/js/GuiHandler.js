@@ -6,7 +6,7 @@ class GuiHandler {
 		this.table = document.getElementById('task_table');
 	}
 
-	addRow(i, task, statuses) {
+	addRow(i, task) {
 		let row = this.table.insertRow(-1);
 
 		row.insertCell(0).innerHTML = task.id;
@@ -18,10 +18,10 @@ class GuiHandler {
 		   selectList.setAttribute("id", i);
 		   selectList.setAttribute("class", "statusChanger");
 
-		   for (var j = 0; j < statuses.length; j++) {
+		   for (var j = 0; j < this.statuses.length; j++) {
 		     var option = document.createElement("option");
 		     option.setAttribute("value", j);
-		     option.text = statuses[j];
+		     option.text = this.statuses[j];
 
 		     selectList.appendChild(option);
 		   }
@@ -46,10 +46,10 @@ class GuiHandler {
 	editRow(x, me){
 		console.log("index: " + me.id)
 		console.log(me.value)
-		   var  r = window.confirm("Set " + x[me.id].cells[1].innerHTML + " to " + statuses[me.value])
+		   var  r = window.confirm("Set " + x[me.id].cells[1].innerHTML + " to " + this.statuses[me.value])
 		   if (r==true){
 			   console.log("Status changed")
-			   x[me.id].cells[2].innerHTML = statuses[me.value]
+			   x[me.id].cells[2].innerHTML = this.statuses[me.value]
 		   }else{
 			   console.log("Cancelled by user. If not then something went really fu**ing wrong.")
 		   }
@@ -111,14 +111,15 @@ function setupStatus() {
 
 	console.log("step3");
 
-
+	const statuses = ["WAITING","ACTIVE","DONE"]
 	const tasks = [
 	    {id:1,title:"Paint roof",status:"WAITING"},
 	    {id:2,title:"Clean floor",status:"DONE"},
 	    {id:3,title:"Wash windows",status:"ACTIVE"}
 	]
+	gui.statuses = statuses
  for(let i =0; i<tasks.length;i++){
-	 gui.addRow(i, tasks[i], statuses);
+	 gui.addRow(i, tasks[i]);
  }
 
 }
