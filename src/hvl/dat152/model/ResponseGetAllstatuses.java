@@ -1,8 +1,9 @@
-package model;
+package hvl.dat152.model;
 
 import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
-import model.Task.Status;
+
+import hvl.dat152.model.Task.Status;
 
 @XmlRootElement
 public class ResponseGetAllstatuses extends ServerResponse {

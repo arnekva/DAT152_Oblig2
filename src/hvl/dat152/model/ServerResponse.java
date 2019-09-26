@@ -1,4 +1,4 @@
-package model;
+package hvl.dat152.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

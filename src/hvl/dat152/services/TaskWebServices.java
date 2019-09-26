@@ -1,4 +1,4 @@
-package services;
+package hvl.dat152.services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +13,16 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import dataaccess.TaskEAO;
-import model.ResponseAddTask;
-import model.ResponseDeleteTask;
-import model.ResponseGetAllstatuses;
-import model.ResponseGetTasks;
-import model.ResponsePutTaskStatus;
-import model.Task;
-import model.TaskStatus;
-import model.Task.Status;
+
+import hvl.dat152.dataaccess.TaskEAO;
+import hvl.dat152.model.ResponseAddTask;
+import hvl.dat152.model.ResponseDeleteTask;
+import hvl.dat152.model.ResponseGetAllstatuses;
+import hvl.dat152.model.ResponseGetTasks;
+import hvl.dat152.model.ResponsePutTaskStatus;
+import hvl.dat152.model.Task;
+import hvl.dat152.model.TaskStatus;
+import hvl.dat152.model.Task.Status;
 
 /**
  * @author bki

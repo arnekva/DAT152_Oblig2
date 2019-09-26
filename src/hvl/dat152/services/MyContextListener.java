@@ -1,11 +1,12 @@
-package services;
+package hvl.dat152.services;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import dataaccess.TaskEAO;
-import model.Task;
-import model.Task.Status;
+
+import hvl.dat152.dataaccess.TaskEAO;
+import hvl.dat152.model.Task;
+import hvl.dat152.model.Task.Status;
 
 public class MyContextListener implements ServletContextListener {
 

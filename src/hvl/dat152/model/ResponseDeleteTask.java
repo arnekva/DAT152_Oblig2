@@ -1,4 +1,4 @@
-package model;
+package hvl.dat152.model;
 
 public class ResponseDeleteTask extends ServerResponse  {
     private Integer id;

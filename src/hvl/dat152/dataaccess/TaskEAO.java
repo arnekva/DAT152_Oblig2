@@ -1,4 +1,4 @@
-package dataaccess;
+package hvl.dat152.dataaccess;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import model.Task;
-import model.Task.Status;
+import hvl.dat152.model.Task;
+import hvl.dat152.model.Task.Status;
 
 @Stateless
 public class TaskEAO {

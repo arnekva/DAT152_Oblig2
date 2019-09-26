@@ -1,4 +1,4 @@
-package model;
+package hvl.dat152.model;
 
 public class ResponseAddTask extends ServerResponse {
 
