@@ -70,6 +70,7 @@ class GuiHandler {
 		for(let i=0; i<tab.length;i++){
 			tab[i].id = i;
 		}
+		updateId()
 	}
 
 }
@@ -115,7 +116,13 @@ function updateStatusChanger(){
 		
 	}
 }
-
+function updateId(){
+	let alltasks = document.getElementsByClassName('radene')
+	for(let i = 0; i<alltasks.length; i++){
+		console.log(alltasks[i])
+		alltasks[i].cells[0].innerHTML = i+1
+	}
+}
 
 function addNewTask(newtask){
 	gui.addRow(newtask);

@@ -27,6 +27,7 @@ class ModalBox{
 			console.log(task)
 			gui.addRow(task.id, task)
 			modal.style.display = "none"
+			document.getElementById('title').value = ""
 		}
 		
 		btn.onclick = function(){
