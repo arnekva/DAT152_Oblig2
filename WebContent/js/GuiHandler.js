@@ -5,6 +5,10 @@ class GuiHandler {
 	constructor() {
 		this.table = document.getElementById('task_table');
 	}
+	
+	set deleteTaskCallback(id){
+		id();
+	}
 
 	addRow(i, task) {
 		let row = this.table.insertRow(-1);
@@ -40,8 +44,10 @@ class GuiHandler {
 			   var txt;
 			   var  r = window.confirm("Do you want to delete this task?")
 			   if (r==true){
-				   console.log("Task Deleted")
-				   this.deleteRow(row.rowIndex);
+				   this.deleteTaskCallback = (id) => {console.log(`User has approved the deletion of task with id ${task.id}.`)}
+				   this.deleteTaskCallback = (id) => {console.log(`Observer, task with id ${task.id} is not removed from the view!`)}
+				   //console.log("Task Deleted")
+				   //this.deleteRow(row.rowIndex);
 			   }else{
 				   console.log("Deletion canceled")
 			   }
