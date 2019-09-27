@@ -7,11 +7,12 @@ class ajaxHandler {
 
 	    try {
 	        const response = await fetch(url,{method: "GET"})
+	        
 	        try {
 	            const text = await response.text()
 	            console.log(text)
 	            this.statusesResponse = text
-	            await new Promise((resolve, reject) => setTimeout(resolve, 3000));
+	            
 	            return text
 	            
 	        } catch (error) {

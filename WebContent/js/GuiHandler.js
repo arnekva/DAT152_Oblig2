@@ -37,6 +37,7 @@ class GuiHandler {
 		     var option = document.createElement("option");
 		     option.setAttribute("value", j);
 		     option.text = this.statuses[j];
+		     
 		     //ALT AVHENGIG HER AV FØRSTE GET IKKE BLIR FOR TREIG
 		     //
 
@@ -156,7 +157,7 @@ function updateTask(oldtask, newtask){
 function setupStatus() {
 
 	console.log("step3")
-	const statuseslist = ["WAITING","ACTIVE","DONE"]
+	const statuseslist = ["WAITING","ACTIVE","DO323133NE"]
 	gui.statuses = statuseslist
 	const tasks = [
 	    {id:1,title:"Paint roof",status:"WAITING"},
@@ -183,12 +184,14 @@ function setupStatus() {
 	
 	console.log("hei1")
 
+
 }
 
 function setupCallback(callback){
 	const statuses = ajax.allstatuses()
-    callback();
+	
     console.log('Pass1');
     console.log(statuses)
     gui.statuses = statuses
+    callback();
 }
