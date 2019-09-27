@@ -37,6 +37,8 @@ class GuiHandler {
 		     var option = document.createElement("option");
 		     option.setAttribute("value", j);
 		     option.text = this.statuses[j];
+		     //ALT AVHENGIG HER AV FØRSTE GET IKKE BLIR FOR TREIG
+		     //
 
 		     selectList.appendChild(option);
 		   }
@@ -154,7 +156,7 @@ function updateTask(oldtask, newtask){
 function setupStatus() {
 
 	console.log("step3")
-	const statuseslist = ["WAITING","ACTIVE","DONE123"]
+	const statuseslist = ["WAITING","ACTIVE","DONE"]
 	gui.statuses = statuseslist
 	const tasks = [
 	    {id:1,title:"Paint roof",status:"WAITING"},
