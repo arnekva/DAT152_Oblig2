@@ -180,6 +180,7 @@ function setupStatus() {
 	//console.log(getstatuses)
 	setupCallback(function() {
 	    console.log('Pass2');
+	    
 	});
 	
 	console.log("hei1")
