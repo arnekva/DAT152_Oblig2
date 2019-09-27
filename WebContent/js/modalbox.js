@@ -1,7 +1,7 @@
 class ModalBox{
 
 	constructor(){
-		console.log("Toppen av modalbox")
+		
 		let modal = document.getElementById("myModal")
 
 		let btn = document.getElementById("newtaskbtn")
@@ -25,16 +25,14 @@ class ModalBox{
 			let titletxt = document.getElementById('title').value
 			let statustxt = document.getElementById('status').value
 			let task = {id: alltasks.length+1,title: titletxt, status: gui.statuses[statustxt]}
-			console.log(task)
-			gui.addNewTask(task)
-//			gui.addRow(task.id, task)
+			
+			gui.newTaskCallback = task
 			modal.style.display = "none"
 			document.getElementById('title').value = ""
 		}
 		
 		btn.onclick = function(){
 			modal.style.display = "block"
-				console.log("test")
 		}
 		
 		span.onclick = function(){
@@ -48,66 +46,61 @@ class ModalBox{
 				modal.style.display = "none"
 				document.getElementById('title').value = ""
 			}
-			
 		}
 	}
 
 	
 	 prepareInputFields(labelText, id, parent) {
-	        var outerDiv = document.createElement("div");
+	     var outerDiv = document.createElement("div");
 
-	        var label = document.createElement("label");
-	        label.textContent = labelText + ": ";
-	        label.htmlFor = id;
-	        console.log("hfsfsd")
-	        var input = document.createElement("input");
-	        input.id = id;
+	     var label = document.createElement("label");
+	     label.textContent = labelText + ": ";
+	     label.htmlFor = id;
+	     var input = document.createElement("input");
+	     input.id = id;
 
-	        outerDiv.appendChild(label);
-	        outerDiv.appendChild(input);
-	        parent.appendChild(outerDiv);
-	    }
+	     outerDiv.appendChild(label);
+	     outerDiv.appendChild(input);
+	     parent.appendChild(outerDiv);
+	 }
 	 
 	 
 	 
 	 fillInputFields(inputData) {
-	        document.getElementById("title").value = inputData.title;
-	    }
+	     document.getElementById("title").value = inputData.title;
+	 }
 	
 	 
 	 appendAddtaskButton(modalcontent) {
-	        var addbtn = document.createElement("button");
-	        addbtn.id = "modal-add-button";
-	        addbtn.textContent = "Add task";
+	     var addbtn = document.createElement("button");
+	     addbtn.id = "modal-add-button";
+	     addbtn.textContent = "Add task";
 
-	        // Hidden by default
-	        modalcontent.appendChild(addbtn);
-	    }
+	     // Hidden by default
+	     modalcontent.appendChild(addbtn);
+	 }
 	 
 	 appendOptions(labelText, id, parent){
+	     var selectList = document.createElement("select");
+			selectList.setAttribute("id", id);
+			selectList.setAttribute("class", "statusChooser");
 
-	        var selectList = document.createElement("select");
-			   selectList.setAttribute("id", id);
-			   selectList.setAttribute("class", "statusChooser");
+			for (var j = 0; j < gui.statuses.length; j++) {
+			  var option = document.createElement("option");
+			  option.setAttribute("value", j);
+			  option.text = gui.statuses[j];
 
-			   for (var j = 0; j < gui.statuses.length; j++) {
-			     var option = document.createElement("option");
-			     option.setAttribute("value", j);
-			     option.text = gui.statuses[j];
-
-			     selectList.appendChild(option);
-			   }
+			  selectList.appendChild(option);
+			}
 			   
-			   var outerDiv = document.createElement("div");
+			var outerDiv = document.createElement("div");
 
-		        var label = document.createElement("label");
-		        label.textContent = labelText + ": ";
-		        label.htmlFor = id;
+		    var label = document.createElement("label");
+		    label.textContent = labelText + ": ";
+		    label.htmlFor = id;
 
 	        outerDiv.appendChild(label);
 	        outerDiv.appendChild(selectList);
 	        parent.appendChild(outerDiv);
 	 }
-	 
-
 }

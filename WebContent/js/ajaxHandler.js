@@ -10,24 +10,22 @@ class ajaxHandler {
 	           
 	            try{
 	            	const text = await response.text()
-		            console.log(text)
 	            	return text
 	            } catch (error){
 	            	console.log(error)
 	            }
 	       	} catch (error) {
 	            console.log(error)
-	        }
-	        
+	        }  
 	}
 	
-	async deleteTask() {
-	    const url='../TaskServices/broker/task/2'
+	async deleteTask(id) {
+	    const url='../TaskServices/broker/task/' + id
 	    try {
 	        const response = await fetch(url,{method: "DELETE"})
 	        try {
 	            const text = await response.text()
-	            console.log(text)
+	            return text
 	        } catch (error) {
 	            console.log(error)
 	        }
@@ -42,11 +40,11 @@ class ajaxHandler {
 	        const response = await fetch(url,{
 	            method: "PUT",
 	            headers: {"Content-Type": "application/json; charset=utf-8"},
-	            body: JSON.stringify({'status': 'DONE'})
+	            body: JSON.stringify({'status': task.status})
 	        })
 	        try {
 	            const text = await response.text()
-	            console.log(text)
+	            return text
 	        } catch (error) {
 	            console.log(error)
 	        }
@@ -56,7 +54,6 @@ class ajaxHandler {
 	}
 	
 	async addNewTask(task) {
-	    
 	    const url='../TaskServices/broker/task'
 	    try {
 	        const response = await fetch(url,{
@@ -66,7 +63,6 @@ class ajaxHandler {
 	        })
 	        try {
 	            const text = await response.text()
-	            console.log(text)
 	            return text
 	        } catch (error) {
 	            console.log(error)
@@ -82,7 +78,6 @@ class ajaxHandler {
 	        const response = await fetch(url,{method: "GET"})
 	        try {
 	            const tasks = await response.text()
-	            console.log(tasks)
 	            return tasks
 	        } catch (error) {
 	            console.log(error)
@@ -91,5 +86,4 @@ class ajaxHandler {
 	        console.log(error)
 	    }
 	}
-	
 }
