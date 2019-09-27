@@ -91,6 +91,24 @@ class GuiHandler {
 		}
 		updateId()
 	}
+	
+	addNewTask(newtask){
+		console.log("gui addnewtask")
+		ajax.addNewTask(newtask)
+		.then(text => {
+			console.log(text)
+			ajax.getAllTasks()
+			.then(tasks => {
+				console.log("Ey boys, jeg bare la inn en rolig hent av taskene også:")
+				console.log(tasks)
+			})
+		}
+		)
+		
+		
+		
+//		gui.addRow(newtask);
+	}
 
 }
 
@@ -123,12 +141,12 @@ function updateId(){
 	}
 }
 
-function addNewTask(newtask){
-	gui.addRow(newtask);
-}
+
 function updateTask(oldtask, newtask){
 	gui.editrow(oldtask, newtask);
 }
+
+ 
 
 function setupStatus() {
 
@@ -172,47 +190,9 @@ console.log("hei1")
 	console.log("tasks found")
 	}
 	)
-//	console.log("før await")
-//	const statusesJson = await result.json()
-//	console.log(`Test print: '${JSON.stringify(statusesJson)}'`)
-
-	
-//	const statusesJson = ajax.statusesResponse
-//		console.log("test of status gettin")
-//		console.log(statusesJson)
-
-	//console.log(getstatuses)
-
-//	setupCallback(function() {
-//	    console.log('Pass2');
-//	    
-//	});
-	
-
-	
-
-	setupCallback(function() {
-	    console.log('Pass2');
-	    
-	});
-
 	
 
 
-}
-
-function setupCallback(callback){
-	const statuses = ajax.allstatuses()
-
-
-	if(statuses.ok){
-	
-    console.log('Pass1');
-    console.log(statuses)
-    gui.statuses = statuses
-    callback();
-
-}
 }
 setupStatus()
 
