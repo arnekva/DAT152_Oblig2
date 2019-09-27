@@ -163,10 +163,20 @@ function setupStatus() {
 // for(let i =1; i<=tasks.length;i++){
 //	 gui.addRow(i, tasks[i-1]);
 // }
-	const getstatuses = ajax.allstatuses()
-
-		console.log(getstatuses)
+	ajax.allstatuses()
+//	console.log("før await")
+//	const statusesJson = await result.json()
+//	console.log(`Test print: '${JSON.stringify(statusesJson)}'`)
+	
+//	const statusesJson = ajax.statusesResponse
+//		console.log("test of status gettin")
+//		console.log(statusesJson)
 
 	//console.log(getstatuses)
 
+}
+
+function setupCallback(callback){
+	
+	
 }

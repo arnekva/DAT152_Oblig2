@@ -10,7 +10,7 @@ class ajaxHandler {
 	        try {
 	            const text = await response.text()
 	            console.log(text)
-	            
+	            this.statusesResponse = text
 	        } catch (error) {
 	            console.log(error)
 	            }
