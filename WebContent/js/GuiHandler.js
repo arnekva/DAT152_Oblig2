@@ -9,6 +9,10 @@ class GuiHandler {
 	set deleteTaskCallback(id){
 		id();
 	}
+	
+	set newStatusCallback(task){
+		console.log("User has approved to change the status of task with id " + task.id + " to " + task.status);
+	}
 
 	addRow(i, task) {
 		let row = this.table.insertRow(-1);
@@ -56,13 +60,17 @@ class GuiHandler {
 	}
 	
 
-	editRow(allTasks, me){
-		console.log("index: " + me.id-1)
-		console.log(me.value)
-		   var  r = window.confirm("Set " + allTasks[me.id-1].cells[1].innerHTML + " to " + this.statuses[me.value])
+	editRow(allTasks, thisTask){
+		let math = thisTask.id-1
+		console.log("index: " + math)
+		console.log(thisTask.id)
+		console.log(thisTask.value)
+		   var  r = window.confirm("Set " + allTasks[thisTask.id-1].cells[1].innerHTML + " to " + this.statuses[thisTask.value])
 		   if (r==true){
+			   thisTask.status = this.statuses[thisTask.value]
+			   this.newStatusCallback = thisTask
 			   console.log("Status changed")
-			   allTasks[me.id-1].cells[2].innerHTML = this.statuses[me.value]
+			   allTasks[thisTask.id-1].cells[2].innerHTML = this.statuses[thisTask.value]
 		   }else{
 			   console.log("Cancelled by user. If not then something went really fu**ing wrong.")
 		   }
@@ -94,6 +102,7 @@ window.onload = function()
 	console.log(test.length)
 	for (var i = 0; i < test.length; i++) {
 		console.log(test[i])
+		console.log(allTasks[i])
 		console.log(radene[i])
 	    test[i].onchange = function () {
 
