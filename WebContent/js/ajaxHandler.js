@@ -33,8 +33,8 @@ class ajaxHandler {
 	    }
 	}
 	
-	async modifyStatus() {
-	    const url='../TaskServices/broker/task/2'
+	async modifyStatus(task) {
+	    const url='../TaskServices/broker/task/' + task.id 
 	    try {
 	        const response = await fetch(url,{
 	            method: "PUT",
