@@ -182,11 +182,20 @@ console.log("hei1")
 //		console.log(statusesJson)
 
 	//console.log(getstatuses)
+
 //	setupCallback(function() {
 //	    console.log('Pass2');
 //	    
 //	});
 	
+
+	
+
+	setupCallback(function() {
+	    console.log('Pass2');
+	    
+	});
+
 	
 
 
@@ -194,11 +203,17 @@ console.log("hei1")
 
 function setupCallback(callback){
 	const statuses = ajax.allstatuses()
+
+
+	if(statuses.ok){
 	
     console.log('Pass1');
     console.log(statuses)
     gui.statuses = statuses
     callback();
-}
 
+}
+}
 setupStatus()
+
+    

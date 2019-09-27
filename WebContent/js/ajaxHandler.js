@@ -7,17 +7,15 @@ class ajaxHandler {
 
 	    try {
 	        const response = await fetch(url,{method: "GET"})
-	        
-	        try {
-	            const text = await response.text()
-	            console.log(text)
-	            this.statusesResponse = text
-	            
-	            return text
-	            
-	        } catch (error) {
-	            console.log(error)
+	           
+	            if(response.ok){
+	            	const text = await response.text()
+		            console.log(text)
+	            	return text
 	            }
+	        
+	            
+	  
 	        } catch (error) {
 	            console.log(error)
 	        }
