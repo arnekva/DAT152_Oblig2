@@ -97,32 +97,8 @@ class GuiHandler {
 const ajax = new ajaxHandler()
 const gui = new GuiHandler()
 
-window.onload = function()
-{setupStatus()
-
-	let test = document.getElementsByClassName('statusChanger')
-	let radene = document.getElementsByClassName('radene')
-	var allTasks = document.getElementById("task_table").rows;
-	console.log(radene.length)
-	console.log(test.length)
-	for (var i = 0; i < test.length; i++) {
-		console.log(test[i])
-		console.log(allTasks[i])
-		console.log(radene[i])
-	    test[i].onchange = function () {
 
 
-						gui.editRow(allTasks, this)
-
-
-	       //editRow(this.value);
-	    }
-		
-	}
-
-	document.getElementById('message').innerHTML = "Found " + allTasks.length + " tasks."
-	console.log("tasks found")
-};
 //document.getElementById("newtaskbtn").onclick = function()
 //{addNewTask()};
 
@@ -156,18 +132,46 @@ function updateTask(oldtask, newtask){
 
 function setupStatus() {
 
-	console.log("step3")
-	const statuseslist = ["WAITING","ACTIVE","DO323133NE"]
-	gui.statuses = statuseslist
-	const tasks = [
-	    {id:1,title:"Paint roof",status:"WAITING"},
-	    {id:2,title:"Clean floor",status:"DONE"},
-	    {id:3,title:"Wash windows",status:"ACTIVE"}
-	]
- for(let i =1; i<=tasks.length;i++){
-	 gui.addRow(i, tasks[i-1]);
- }
+console.log("hei1")
+	
+	ajax.allstatuses()
+	.then(text => {
+		console.log(text)
+		console.log("kan den vente på denne også?")
+		let json = JSON.parse(text)
+		gui.statuses = json.allstatuses
+		console.log(gui.statuses)
+		const modal = new ModalBox()
+		
+		
+	
+	
+	console.log("etter den påståtte fungerende bruken av ajax")
+	
+	let test = document.getElementsByClassName('statusChanger')
+	let radene = document.getElementsByClassName('radene')
+	var allTasks = document.getElementById("task_table").rows;
+	console.log(radene.length)
+	console.log(test.length)
+	for (var i = 0; i < test.length; i++) {
+		console.log(test[i])
+		console.log(allTasks[i])
+		console.log(radene[i])
+	    test[i].onchange = function () {
 
+
+						gui.editRow(allTasks, this)
+
+
+	       //editRow(this.value);
+	    }
+		
+	}
+
+	document.getElementById('message').innerHTML = "Found " + allTasks.length + " tasks."
+	console.log("tasks found")
+	}
+	)
 //	console.log("før await")
 //	const statusesJson = await result.json()
 //	console.log(`Test print: '${JSON.stringify(statusesJson)}'`)
@@ -178,12 +182,12 @@ function setupStatus() {
 //		console.log(statusesJson)
 
 	//console.log(getstatuses)
-	setupCallback(function() {
-	    console.log('Pass2');
-	    
-	});
+//	setupCallback(function() {
+//	    console.log('Pass2');
+//	    
+//	});
 	
-	console.log("hei1")
+	
 
 
 }
@@ -196,3 +200,5 @@ function setupCallback(callback){
     gui.statuses = statuses
     callback();
 }
+
+setupStatus()

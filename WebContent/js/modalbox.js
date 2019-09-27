@@ -1,6 +1,7 @@
 class ModalBox{
 
 	constructor(){
+		console.log("Toppen av modalbox")
 		let modal = document.getElementById("myModal")
 
 		let btn = document.getElementById("newtaskbtn")
@@ -57,7 +58,7 @@ class ModalBox{
 	        var label = document.createElement("label");
 	        label.textContent = labelText + ": ";
 	        label.htmlFor = id;
-
+	        console.log("hfsfsd")
 	        var input = document.createElement("input");
 	        input.id = id;
 
@@ -88,10 +89,10 @@ class ModalBox{
 			   selectList.setAttribute("id", id);
 			   selectList.setAttribute("class", "statusChooser");
 
-			   for (var j = 0; j < statuses.length; j++) {
+			   for (var j = 0; j < gui.statuses.length; j++) {
 			     var option = document.createElement("option");
 			     option.setAttribute("value", j);
-			     option.text = statuses[j];
+			     option.text = gui.statuses[j];
 
 			     selectList.appendChild(option);
 			   }
@@ -109,4 +110,3 @@ class ModalBox{
 	 
 
 }
-const modal = new ModalBox()
