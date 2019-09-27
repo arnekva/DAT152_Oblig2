@@ -11,12 +11,16 @@ class ajaxHandler {
 	            const text = await response.text()
 	            console.log(text)
 	            this.statusesResponse = text
+	            await new Promise((resolve, reject) => setTimeout(resolve, 3000));
+	            return text
+	            
 	        } catch (error) {
 	            console.log(error)
 	            }
 	        } catch (error) {
 	            console.log(error)
 	        }
+	        
 	}
 	
 	async deleteTask() {

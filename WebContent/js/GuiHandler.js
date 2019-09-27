@@ -57,6 +57,7 @@ class GuiHandler {
 			   }
 			}, true);
 		   updateStatusChanger()
+		   console.log(this.statuses)
 	}
 	
 
@@ -71,6 +72,7 @@ class GuiHandler {
 			   this.newStatusCallback = thisTask
 			   console.log("Status changed")
 			   allTasks[thisTask.id-1].cells[2].innerHTML = this.statuses[thisTask.value]
+			   console.log(this.statuses)
 		   }else{
 			   console.log("Cancelled by user. If not then something went really fu**ing wrong.")
 		   }
@@ -151,32 +153,40 @@ function updateTask(oldtask, newtask){
 
 function setupStatus() {
 
-//	console.log("step3");
-//
-//	const statuses = ["WAITING","ACTIVE","DONE"]
-//	const tasks = [
-//	    {id:1,title:"Paint roof",status:"WAITING"},
-//	    {id:2,title:"Clean floor",status:"DONE"},
-//	    {id:3,title:"Wash windows",status:"ACTIVE"}
-//	]
-//	gui.statuses = statuses
-// for(let i =1; i<=tasks.length;i++){
-//	 gui.addRow(i, tasks[i-1]);
-// }
-	ajax.allstatuses()
+	console.log("step3")
+	const statuseslist = ["WAITING","ACTIVE","DONE123"]
+	gui.statuses = statuseslist
+	const tasks = [
+	    {id:1,title:"Paint roof",status:"WAITING"},
+	    {id:2,title:"Clean floor",status:"DONE"},
+	    {id:3,title:"Wash windows",status:"ACTIVE"}
+	]
+ for(let i =1; i<=tasks.length;i++){
+	 gui.addRow(i, tasks[i-1]);
+ }
+
 //	console.log("før await")
 //	const statusesJson = await result.json()
 //	console.log(`Test print: '${JSON.stringify(statusesJson)}'`)
+
 	
 //	const statusesJson = ajax.statusesResponse
 //		console.log("test of status gettin")
 //		console.log(statusesJson)
 
 	//console.log(getstatuses)
+	setupCallback(function() {
+	    console.log('Pass2');
+	});
+	
+	console.log("hei1")
 
 }
 
 function setupCallback(callback){
-	
-	
+	const statuses = ajax.allstatuses()
+    callback();
+    console.log('Pass1');
+    console.log(statuses)
+    gui.statuses = statuses
 }
