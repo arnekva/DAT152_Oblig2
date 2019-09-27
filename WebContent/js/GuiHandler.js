@@ -89,7 +89,7 @@ class GuiHandler {
 
 }
 
-
+const ajax = new ajaxHandler()
 const gui = new GuiHandler()
 
 window.onload = function()
@@ -151,17 +151,22 @@ function updateTask(oldtask, newtask){
 
 function setupStatus() {
 
-	console.log("step3");
+//	console.log("step3");
+//
+//	const statuses = ["WAITING","ACTIVE","DONE"]
+//	const tasks = [
+//	    {id:1,title:"Paint roof",status:"WAITING"},
+//	    {id:2,title:"Clean floor",status:"DONE"},
+//	    {id:3,title:"Wash windows",status:"ACTIVE"}
+//	]
+//	gui.statuses = statuses
+// for(let i =1; i<=tasks.length;i++){
+//	 gui.addRow(i, tasks[i-1]);
+// }
+	const getstatuses = ajax.allstatuses()
 
-	const statuses = ["WAITING","ACTIVE","DONE"]
-	const tasks = [
-	    {id:1,title:"Paint roof",status:"WAITING"},
-	    {id:2,title:"Clean floor",status:"DONE"},
-	    {id:3,title:"Wash windows",status:"ACTIVE"}
-	]
-	gui.statuses = statuses
- for(let i =1; i<=tasks.length;i++){
-	 gui.addRow(i, tasks[i-1]);
- }
+		console.log(getstatuses)
+
+	//console.log(getstatuses)
 
 }
