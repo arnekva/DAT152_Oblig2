@@ -178,6 +178,9 @@ function setupStatus() {
 //		console.log(statusesJson)
 
 	//console.log(getstatuses)
+	
+	
+
 	setupCallback(function() {
 	    console.log('Pass2');
 	    
@@ -190,9 +193,16 @@ function setupStatus() {
 
 function setupCallback(callback){
 	const statuses = ajax.allstatuses()
+
+
+	if(statuses.ok){
 	
     console.log('Pass1');
     console.log(statuses)
     gui.statuses = statuses
     callback();
+    console.log("ehehheeh")
+    console.log(gui.statuses)
+	
+	}
 }
