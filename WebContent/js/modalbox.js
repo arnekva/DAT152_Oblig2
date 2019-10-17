@@ -51,12 +51,12 @@ class ModalBox{
 
 	
 	 prepareInputFields(labelText, id, parent) {
-	     var outerDiv = document.createElement("div");
+	     let outerDiv = document.createElement("div");
 
-	     var label = document.createElement("label");
+	     let label = document.createElement("label");
 	     label.textContent = labelText + ": ";
 	     label.htmlFor = id;
-	     var input = document.createElement("input");
+	     let input = document.createElement("input");
 	     input.id = id;
 
 	     outerDiv.appendChild(label);
@@ -72,7 +72,7 @@ class ModalBox{
 	
 	 
 	 appendAddtaskButton(modalcontent) {
-	     var addbtn = document.createElement("button");
+	     let addbtn = document.createElement("button");
 	     addbtn.id = "modal-add-button";
 	     addbtn.textContent = "Add task";
 
@@ -81,21 +81,21 @@ class ModalBox{
 	 }
 	 
 	 appendOptions(labelText, id, parent){
-	     var selectList = document.createElement("select");
+	     let selectList = document.createElement("select");
 			selectList.setAttribute("id", id);
 			selectList.setAttribute("class", "statusChooser");
 
-			for (var j = 0; j < gui.statuses.length; j++) {
-			  var option = document.createElement("option");
+			for (let j = 0; j < gui.statuses.length; j++) {
+			  let option = document.createElement("option");
 			  option.setAttribute("value", j);
 			  option.text = gui.statuses[j];
 
 			  selectList.appendChild(option);
 			}
 			   
-			var outerDiv = document.createElement("div");
+			let outerDiv = document.createElement("div");
 
-		    var label = document.createElement("label");
+		    let label = document.createElement("label");
 		    label.textContent = labelText + ": ";
 		    label.htmlFor = id;
 
