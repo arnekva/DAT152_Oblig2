@@ -9,8 +9,8 @@ class ajaxHandler {
 	        const response = await fetch(url,{method: "GET"})
 	           
 	            try{
-	            	const text = await response.text()
-	            	return text
+	            	const json = await response.JSON()
+	            	return json
 	            } catch (error){
 	            	console.log(error)
 	            }
@@ -24,8 +24,8 @@ class ajaxHandler {
 	    try {
 	        const response = await fetch(url,{method: "DELETE"})
 	        try {
-	            const text = await response.text()
-	            return text
+	        	const json = await response.JSON()
+	            return json
 	        } catch (error) {
 	            console.log(error)
 	        }
@@ -43,8 +43,8 @@ class ajaxHandler {
 	            body: JSON.stringify({'status': task.status})
 	        })
 	        try {
-	            const text = await response.text()
-	            return text
+	        	const json = await response.JSON()
+	            return json
 	        } catch (error) {
 	            console.log(error)
 	        }
@@ -62,8 +62,8 @@ class ajaxHandler {
 	            body: JSON.stringify({"title":task.title, "status": task.status})
 	        })
 	        try {
-	            const text = await response.text()
-	            return text
+	        	const json = await response.JSON()
+	            return json
 	        } catch (error) {
 	            console.log(error)
 	        }
@@ -77,8 +77,8 @@ class ajaxHandler {
 	    try {
 	        const response = await fetch(url,{method: "GET"})
 	        try {
-	            const tasks = await response.text()
-	            return tasks
+	        	const json = await response.JSON()
+	            return json
 	        } catch (error) {
 	            console.log(error)
 	        }            

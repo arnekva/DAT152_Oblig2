@@ -72,8 +72,7 @@ class GuiHandler {
 
 	modifyStatus(task){
 		ajax.modifyStatus(task)
-		.then(text => {
-			let json = JSON.parse(text)
+		.then(json => {
 			if (json.responseStatus == 1){
 				console.log("Status was updated.")
 				location.reload(false)
@@ -85,8 +84,7 @@ class GuiHandler {
 
 	deleteTask(i) {
 		ajax.deleteTask(i)
-		.then(text => {
-			let json = JSON.parse(text)
+		.then(json => {
 			if (json.responseStatus == 1){
 				console.log("The task has been deleted.")
 				location.reload(false)
@@ -98,8 +96,7 @@ class GuiHandler {
 	
 	addNewTask(newtask){
 		ajax.addNewTask(newtask)
-		.then(text => {
-			let json = JSON.parse(text)
+		.then(json => {
 			if (json.responseStatus == 1){
 				console.log("The task has been added.")
 				location.reload(false)
@@ -129,14 +126,12 @@ function setupStatus() {
 console.log("Loading page...")
 	
 	ajax.allstatuses()
-	.then(text => {
-		let json = JSON.parse(text)
+	.then(json => {
 		gui.statuses = json.allstatuses
 		const modal = new ModalBox()
 
 		ajax.getAllTasks()
-		.then(tasks => {
-			let json = JSON.parse(tasks)
+		.then(json => {
 			var allTasks = json.tasks
 			document.getElementById('message').innerHTML = "Found " + allTasks.length + " tasks."
 			for (var i = 0; i < allTasks.length; i++){
