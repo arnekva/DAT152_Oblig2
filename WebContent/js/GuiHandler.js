@@ -4,6 +4,7 @@ class GuiHandler {
 
 	constructor() {
 		this.table = document.getElementById('task_table')
+		this.allstatuses = []
 	}
 	
 	set deleteTaskCallback(id){
@@ -18,6 +19,10 @@ class GuiHandler {
 	set newTaskCallback(task){
 		console.log("User has requested to add a new task titled: " + task.title + ", with status: " + task.status)
 		this.addNewTask(task)
+	}
+	
+	set allstatuses(statuses){
+		this.statuses = statuses;
 	}
 
 	addRow(task) {
@@ -134,7 +139,7 @@ console.log("Loading page...")
 	ajax.allstatuses()
 	.then(json => {
 		gui.statuses = json.allstatuses
-		const modal = new ModalBox()
+		const modal = new ModalBox(gui.statuses)
 
 		ajax.getAllTasks()
 		.then(json => {

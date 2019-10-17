@@ -1,6 +1,8 @@
 class ModalBox{
 
-	constructor(){
+	constructor(statuses){
+		
+		this.statuses = statuses;
 		
 		let modal = document.getElementById("myModal")
 
@@ -24,7 +26,7 @@ class ModalBox{
 			let alltasks = document.getElementsByClassName('statusChanger')
 			let titletxt = document.getElementById('title').value
 			let statustxt = document.getElementById('status').value
-			let task = {id: alltasks.length+1,title: titletxt, status: gui.statuses[statustxt]}
+			let task = {id: alltasks.length+1,title: titletxt, status: statuses[statustxt]}
 			
 			gui.newTaskCallback = task
 			modal.style.display = "none"
@@ -88,7 +90,7 @@ class ModalBox{
 			for (let j = 0; j < gui.statuses.length; j++) {
 			  let option = document.createElement("option");
 			  option.setAttribute("value", j);
-			  option.text = gui.statuses[j];
+			  option.text = this.statuses[j];
 
 			  selectList.appendChild(option);
 			}
