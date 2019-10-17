@@ -12,14 +12,7 @@ class GuiHandler {
 	}
 	
 	set newStatusCallback(task){
-		var  r = window.confirm("Set status of task with id " + task.id + " to " + this.statuses[task.value])
-		if (r==true){
-			task.status = this.statuses[task.value]
-			console.log("User has approved to change the status of task with id " + task.id + " to " + task.status)
-			this.modifyStatus(task)
-		}else{
-			console.log("Cancelled by user.")
-		}
+		
 	}
 	
 	set newTaskCallback(task){
@@ -35,51 +28,64 @@ class GuiHandler {
 		row.insertCell(2).innerHTML = task.status;
 
 		row.className += "radene"
-		 var selectList = document.createElement("select");
+		 let selectList = document.createElement("select");
 		   selectList.setAttribute("id", task.id);
 		   selectList.setAttribute("class", "statusChanger");
+		   selectList.addEventListener("change", function() {newStatusCallback = selectList}, false)
 		   
-		   var option = document.createElement("option");
+		   
+		   
+		   let option = document.createElement("option");
 		     option.setAttribute("value", "");
 		     option.text = "<Modify>"
 		     option.setAttribute("selected", "selected")
 		     option.setAttribute("disabled", "disabled")
 
 		     selectList.appendChild(option);
-		   for (var j = 0; j < this.statuses.length; j++) {
-		     var option = document.createElement("option");
+		   for (let j = 0; j < this.statuses.length; j++) {
+		     let option = document.createElement("option");
 		     option.setAttribute("value", j);
 		     option.text = this.statuses[j];
 		     
 		     selectList.appendChild(option);
 		   }
-		   var cell = row.insertCell(3);
+		   let cell = row.insertCell(3);
 		   cell.appendChild(selectList);
 		   row.insertCell(4).innerHTML = '<button id="deleteBtn-' + task.id + '" class="delbtn">Delete</button>';
 
 		   document.getElementById("deleteBtn-" + task.id).addEventListener("click", (e) => {
-			   var txt;
-			   var  r = window.confirm("Do you want to delete this task?")
+			   let txt;
+			   let  r = window.confirm("Do you want to delete this task?")
 			   if (r==true){
 				   this.deleteTaskCallback = task.id
 			   }else{
 				   console.log("Deletion canceled.")
 			   }
 			}, true);
-		   updateStatusChanger()
+		   
+//		   updateStatusChanger()
 	}
 	
 
-	modifyStatus(task){
-		ajax.modifyStatus(task)
-		.then(json => {
-			if (json.responseStatus == 1){
-				console.log("Status was updated.")
-				location.reload(false)
-			} else {
-				console.log("Status was not updated.")
-			}
-		})
+	modifyStatus(task, callback){
+		let  r = window.confirm("Set status of task with id " + task.id + " to " + this.statuses[task.value])
+		if (r==true){
+			task.status = this.statuses[task.value]
+			console.log("User has approved to change the status of task with id " + task.id + " to " + task.status)
+			ajax.modifyStatus(task)
+			.then(json => {
+				if (json.responseStatus == 1){
+					console.log("Status was updated.")
+					location.reload(false)
+				} else {
+					console.log("Status was not updated.")
+				}
+			})	
+		}else{
+			console.log("Cancelled by user.")
+		}
+		
+		
 	}
 
 	deleteTask(i) {
