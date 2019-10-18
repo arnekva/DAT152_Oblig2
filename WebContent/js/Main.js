@@ -25,3 +25,17 @@ gui.newStatusCallback = (id,newStatus) => {
     console.log(`User has approved to change the status of task with id ${id} to ${newStatus}.`)
     gui.updateTask(id,newStatus)
 }
+
+const modal = document.getElementById("myModal")
+
+
+modalbox = new ModalBox(modal);
+
+modalbox.allstatuses = statuses;
+
+modalbox.onsubmit = (task) => {
+	console.log('New task ${task.title} with initial status ${task.status} is added by the user')
+	modalbox.close()
+}
+
+document.getElementById('newtask').getElementsByTagName("button")[0].disabled=false;
