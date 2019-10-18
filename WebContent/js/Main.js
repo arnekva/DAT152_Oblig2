@@ -11,9 +11,15 @@ const tasks = [
 for(let i =1; i<=tasks.length;i++){
 	 gui.addRow(tasks[i-1]);
 }
+function testavtilgang(x){
+	console.log("printer den dette også mon tro?" + x)
+}
 
 
 gui.deleteTaskCallback = (id) => {
     console.log(`User has approved the deletion of task with id ${id}.`)
-    gui.deleteTask(id)
+    testavtilgang(id)
 } 
+let id = 1
+
+gui.deleteTask(id)

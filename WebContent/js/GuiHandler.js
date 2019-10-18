@@ -5,16 +5,18 @@ class GuiHandler {
 	constructor() {
 		this.table = document.getElementById('task_table')
 		this.allstatuses = []
+		this.deletetaskCallbacks = new Array() 
+		this.newStatusCallbacks = new Array()
 	}
 	
-	set deleteTaskCallback(id){
-		let callback = document.getElementsByClassName('delbtn')
-		for(let i = 0; i<callback.length; i++){
-			callback[i].addEventListener("click", id)
-		}
+	
+	set deleteTaskCallback(method){
+		this.deletetaskCallbacks.push(method)
 	}
 	
-	set newStatusCallback(id){}
+	set newStatusCallback(method){
+		this.newStatusCallbacks.push(method)
+	}
 	
 	set newTaskCallback(task){
 		console.log("User has requested to add a new task titled: " + task.title + ", with status: " + task.status)
@@ -27,8 +29,6 @@ class GuiHandler {
 
 	addRow(task) {
 		let id = task.id
-		console.log("før testen")
-//		this.deleteTaskCallback = id
 		let row = this.table.insertRow(0);
 
 		row.insertCell(0).innerHTML = this.table.rows.length;
@@ -97,15 +97,19 @@ class GuiHandler {
 	}
 
 	deleteTask(i) {
-		ajax.deleteTask(i)
-		.then(json => {
-			if (json.responseStatus == 1){
-				console.log("The task has been deleted.")
-				location.reload(false)
-			} else {
-				console.log("The task was not deleted.")
-			}
-		})
+		for(let i = 1; i<4; i++){
+			this.deletetaskCallbacks.forEach((x) => x(i))
+		}
+		
+//		ajax.deleteTask(i)
+//		.then(json => {
+//			if (json.responseStatus == 1){
+//				console.log("The task has been deleted.")
+//				location.reload(false)
+//			} else {
+//				console.log("The task was not deleted.")
+//			}
+//		})
 	}
 	
 	addNewTask(newtask){
