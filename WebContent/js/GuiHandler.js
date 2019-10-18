@@ -18,8 +18,8 @@ class GuiHandler {
 		this.newStatusCallbacks.push(method)
 	}
 	
-	set allstatuses(statuses){
-		this.statuses = statuses;
+	set allstatuses(allstatuses){
+		this._allstatuses = allstatuses;
 	}
 
 	addRow(task) {
@@ -31,27 +31,26 @@ class GuiHandler {
 		row.insertCell(2).innerHTML = task.status;
 
 		row.className += "radene"
+		row.setAttribute("id", task.id);
 		 let selectList = document.createElement("select");
 		   selectList.setAttribute("id", task.id);
 		   selectList.setAttribute("class", "statusChanger");
-		   selectList.addEventListener("change", function() {newStatusCallback = selectList}, false)
-		   
-		   
+
 		   
 		   let option = document.createElement("option");
 		     option.setAttribute("value", "");
 		     option.text = "<Modify>"
 		     option.setAttribute("selected", "selected")
 		     option.setAttribute("disabled", "disabled")
-
 		     selectList.appendChild(option);
-		   for (let j = 0; j < this.statuses.length; j++) {
+
+		   for (let j = 0; j < this._allstatuses.length; j++) {
 		     let option = document.createElement("option");
 		     option.setAttribute("value", j);
-		     option.text = this.statuses[j];
-		     
+		     option.text = this._allstatuses[j];
 		     selectList.appendChild(option);
 		   }
+		   
 		   let cell = row.insertCell(3);
 		   cell.appendChild(selectList);
 		   row.insertCell(4).innerHTML = '<button id="deleteBtn-' + task.id + '" class="delbtn">Delete</button>';
@@ -65,30 +64,31 @@ class GuiHandler {
 				   console.log("Deletion canceled.")
 			   }
 			}, true);
-		   
-//		   updateStatusChanger()
+		   selectList.addEventListener("change", this.modifyStatus.bind(this), false)
 	}
 	
 
-	modifyStatus(task, callback){
-		let  r = window.confirm("Set status of task with id " + task.id + " to " + this.statuses[task.value])
-		if (r==true){
-			task.status = this.statuses[task.value]
-			console.log("User has approved to change the status of task with id " + task.id + " to " + task.status)
-			ajax.modifyStatus(task)
-			.then(json => {
-				if (json.responseStatus == 1){
-					console.log("Status was updated.")
-					location.reload(false)
-				} else {
-					console.log("Status was not updated.")
-				}
-			})	
+	modifyStatus(task){
+		let id = task.target.id
+		let status = this._allstatuses[task.target.value]
+		
+		let  r = window.confirm("Set status of task with id " + id + " to " + status)
+		if (r){
+			this.newStatusCallbacks.forEach((x) => x(id, status))
 		}else{
 			console.log("Cancelled by user.")
 		}
 		
 		
+	}
+	
+	updateTask(id,status){
+		let rows = document.getElementsByClassName('radene');
+		for (let i = 0; i<rows.length; i++){
+			if (rows[i].id == id){
+				rows.childNodes[2].innerText = status
+			}
+		}
 	}
 
 	deleteTask(i) {
@@ -107,17 +107,6 @@ class GuiHandler {
 //		})
 	}
 	
-	addNewTask(newtask){
-		ajax.addNewTask(newtask)
-		.then(json => {
-			if (json.responseStatus == 1){
-				console.log("The task has been added.")
-				location.reload(false)
-			} else {
-				console.log("The task was not added.")
-			}	
-		})
-	}
 }
 
 const ajax = new ajaxHandler()
@@ -140,7 +129,7 @@ console.log("Loading page...")
 	
 	ajax.allstatuses()
 	.then(json => {
-		gui.statuses = json.allstatuses
+		gui.allstatuses = json.allstatuses
 		const modal = new ModalBox(gui.statuses)
 
 		ajax.getAllTasks()
@@ -160,6 +149,6 @@ console.log("Loading page...")
 		}
 	})
 }
-setupStatus()
+//setupStatus()
 
     
