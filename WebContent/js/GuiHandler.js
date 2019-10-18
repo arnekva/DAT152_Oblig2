@@ -18,11 +18,6 @@ class GuiHandler {
 		this.newStatusCallbacks.push(method)
 	}
 	
-	set newTaskCallback(task){
-		console.log("User has requested to add a new task titled: " + task.title + ", with status: " + task.status)
-		this.addNewTask(task)
-	}
-	
 	set allstatuses(statuses){
 		this.statuses = statuses;
 	}
