@@ -8,13 +8,13 @@ class GuiHandler {
 	}
 	
 	set deleteTaskCallback(id){
-		console.log("User has approved the deletion of task with id" + id)
-		this.deleteTask(id)
+		let callback = document.getElementsByClassName('delbtn')
+		for(let i = 0; i<callback.length; i++){
+			callback[i].addEventListener("click", id)
+		}
 	}
 	
-	set newStatusCallback(task){
-		
-	}
+	set newStatusCallback(id){}
 	
 	set newTaskCallback(task){
 		console.log("User has requested to add a new task titled: " + task.title + ", with status: " + task.status)
@@ -26,7 +26,10 @@ class GuiHandler {
 	}
 
 	addRow(task) {
-		let row = this.table.insertRow(-1);
+		let id = task.id
+		console.log("før testen")
+//		this.deleteTaskCallback = id
+		let row = this.table.insertRow(0);
 
 		row.insertCell(0).innerHTML = this.table.rows.length;
 		row.insertCell(1).innerHTML = task.title;

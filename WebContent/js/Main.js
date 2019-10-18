@@ -6,11 +6,14 @@ const tasks = [
     { id: 2, title: "Clean floor", status: "DONE" },
     { id: 3, title: "Wash windows", status: "ACTIVE" }
   ];
-const gui = new GuiHandler();
+
 
 for(let i =1; i<=tasks.length;i++){
-	 gui.addRow(i, tasks[i-1]);
+	 gui.addRow(tasks[i-1]);
 }
 
 
-
+gui.deleteTaskCallback = (id) => {
+    console.log(`User has approved the deletion of task with id ${id}.`)
+    gui.deleteTask(id)
+} 
