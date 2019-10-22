@@ -24,16 +24,17 @@ class ModalBox{
 	
 	show(){
 		
-		console.log("Bee movie script")
-		let modal = document.getElementById("MyModal")
+		let modal = document.getElementById("myModal")
 		let selectstatus = document.getElementById("modalstatuslist")
-		
-		if(!selectstatus.hasChildNodes()) {
+		if(selectstatus.length < 1) {
+			console.log("Appending child elements for dropdown")
 			for (let i = 0; i<this._allstatuses.length; i++){
 				let op = document.createElement("option");
 				op.innerText = this._allstatuses[i];
 				selectstatus.appendChild(op);
 			}
+		}else{
+			console.log("Select list child elements have already been created")
 		}
 		modal.style.display = "block";
 	}
@@ -53,7 +54,7 @@ class ModalBox{
 	}
 	
 	close(){
-		let box = document.getElementById("MyModal")
+		let box = document.getElementById("myModal")
 		box.style.display = "none"
 	}
 	
