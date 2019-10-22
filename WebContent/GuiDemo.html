@@ -9,11 +9,14 @@
 <div id="message"><p>Waiting for server data.</p></div>
 <div id="newtask"><button id="newtaskbtn" type="button">New task</button></div>
 <div id="myModal" class="modal">
-	
 	<div class="modalcontent">
 		 <div class="modal-header">
     		<span class="close">&times;</span>
     		<h2>Add new task</h2>
+    		<input type="text" id="tasktext">
+    		<select id="modalstatuslist">
+    		</select>
+    		<input type="submit" id="addTask"/>
   		</div>
 	</div>
 </div>
@@ -30,11 +33,4 @@
 <script type="text/javascript" src="js/Main.js"></script>
 
 
-<!--
-<script type="text/javascript" src="js/GuiHandlerNew.js"></script>
-
-<script src="js/config.js"></script>
-    <script src="js/AJAXConnection.js"></script>
-    
-  -->
 </html>
