@@ -1,108 +1,65 @@
 class ModalBox{
 
-	constructor(statuses){
+	constructor(){
 		
-		this.statuses = statuses;
+		this.onsubmitCallbacks = new Array()
+		this.allstatuses =[]
 		
-		let modal = document.getElementById("myModal")
-
-		let btn = document.getElementById("newtaskbtn")
-
-		let span = document.getElementsByClassName("close")[0]
-		this.currenttaskId=null;
+		const btn = document.getElementById("addTask")
+		const span = document.getElementsByClassName("close")[0]
+		const showmodalbtn = document.getElementById("newtaskbtn")
 		
-		let modalcontent = document.getElementsByClassName("modalcontent")[0]
-		
-		
-        this.prepareInputFields("Title", "title", modalcontent)
-        this.appendOptions("Status", "status", modalcontent)	
-        
-        modalcontent.appendChild(document.createElement("br"))
-        this.appendAddtaskButton(modalcontent);
-		
-		let addbtn = document.getElementById('modal-add-button')
-		
-		addbtn.onclick = function(){
-			let alltasks = document.getElementsByClassName('statusChanger')
-			let titletxt = document.getElementById('title').value
-			let statustxt = document.getElementById('status').value
-			let task = {id: alltasks.length+1,title: titletxt, status: statuses[statustxt]}
-			
-			gui.newTaskCallback = task
-			modal.style.display = "none"
-			document.getElementById('title').value = ""
-		}
-		
-		btn.onclick = function(){
-			modal.style.display = "block"
-		}
-		
-		span.onclick = function(){
-			modal.style.display = "none"
-			document.getElementById('title').value = ""
-
-		}
-		
-		window.onclick = function(event){
-			if(event.target == modal){
-				modal.style.display = "none"
-				document.getElementById('title').value = ""
-			}
-		}
+		showmodalbtn.addEventListener("click", () => this.show(), true)
+		btn.addEventListener("click", () => this.submit(), true)
+		span.addEventListener("click", () => this.close(), true)
 	}
-
 	
-	 prepareInputFields(labelText, id, parent) {
-	     let outerDiv = document.createElement("div");
-
-	     let label = document.createElement("label");
-	     label.textContent = labelText + ": ";
-	     label.htmlFor = id;
-	     let input = document.createElement("input");
-	     input.id = id;
-
-	     outerDiv.appendChild(label);
-	     outerDiv.appendChild(input);
-	     parent.appendChild(outerDiv);
-	 }
-	 
-	 
-	 
-	 fillInputFields(inputData) {
-	     document.getElementById("title").value = inputData.title;
-	 }
+	set onsubmitCallback(method){
+		this.onsubmitCallbacks.push(method)
+	}
 	
-	 
-	 appendAddtaskButton(modalcontent) {
-	     let addbtn = document.createElement("button");
-	     addbtn.id = "modal-add-button";
-	     addbtn.textContent = "Add task";
-
-	     // Hidden by default
-	     modalcontent.appendChild(addbtn);
-	 }
-	 
-	 appendOptions(labelText, id, parent){
-	     let selectList = document.createElement("select");
-			selectList.setAttribute("id", id);
-			selectList.setAttribute("class", "statusChooser");
-
-			for (let j = 0; j < gui.statuses.length; j++) {
-			  let option = document.createElement("option");
-			  option.setAttribute("value", j);
-			  option.text = this.statuses[j];
-
-			  selectList.appendChild(option);
+	set allstatuses(statuses){
+		this._allstatuses = statuses
+	}
+	
+	show(){
+		
+		console.log("Bee movie script")
+		let modal = document.getElementById("MyModal")
+		let selectstatus = document.getElementById("modalstatuslist")
+		
+		if(!selectstatus.hasChildNodes()) {
+			for (let i = 0; i<this._allstatuses.length; i++){
+				let op = document.createElement("option");
+				op.innerText = this._allstatuses[i];
+				selectstatus.appendChild(op);
 			}
-			   
-			let outerDiv = document.createElement("div");
-
-		    let label = document.createElement("label");
-		    label.textContent = labelText + ": ";
-		    label.htmlFor = id;
-
-	        outerDiv.appendChild(label);
-	        outerDiv.appendChild(selectList);
-	        parent.appendChild(outerDiv);
-	 }
+		}
+		modal.style.display = "block";
+	}
+	
+	submit(){
+		let title = document.getElementById("tasktext").value;
+		let statuslist = document.getElementById("modalstatuslist");
+		let status = statuslist.options[statuslist.selectedIndex].value;
+		
+		if(title !== ""){
+			this.onsubmitCallbacks.forEach((x) => x())
+			
+		}
+		this.close();
+		document.getElementById("tasktext").value = "";
+		
+	}
+	
+	close(){
+		let box = document.getElementById("MyModal")
+		box.style.display = "none"
+	}
+	
 }
+
+
+
+
+
