@@ -1,7 +1,11 @@
 "use strict";
 
 class ajaxHandler {
-	
+	/**
+	 * Returns all statuses
+	 * 
+	 * @async
+	 */
 	async allstatuses() {
 	    const url='../TaskServices/broker/allstatuses'
 
@@ -18,19 +22,29 @@ class ajaxHandler {
 	            console.log(error)
 	        }  
 	}
-	
+	/**
+	 * Deletes a task
+	 * @param id The task ID
+	 * @param callback Callback function to be run
+	 * @async
+	 */
 	async deleteTask(id, callback) {
 	    const url='../TaskServices/broker/task/' + id
 	    try {
 	        const response = await fetch(url,{method: "DELETE"})
-	        console.log(response)
 	        console.log("Deleted task with id " + id)
 	        callback(id)
 	    } catch (error) {
 	        console.log(error)
 	    }
 	}
-	
+	/**
+	 * Modyfies the status of a task
+	 * @param id The id of the task
+	 * @param status The new status
+	 * @param callback Callback function to be run
+	 * @async
+	 */
 	async modifyStatus(id, status, callback) {
 	    const url='../TaskServices/broker/task/' + id 
 	    try {
@@ -45,7 +59,13 @@ class ajaxHandler {
 	        console.log(error)
 	    }
 	}
-	
+	/**
+	 * Adds a new task
+	 * 
+	 * @param task Task
+	 * @param callback Function to be called
+	 * @async
+	 */
 	async addNewTask(task, callback) {
 	    const url='../TaskServices/broker/task'
 	    try {
@@ -65,7 +85,11 @@ class ajaxHandler {
 	        console.log(error)
 	    }
 	}
-	
+	/**
+	 * Returns all current tasks in the list
+	 * 
+	 * @async
+	 */
 	async getAllTasks() {
 	    const url='../TaskServices/broker/tasklist'
 	    try {
