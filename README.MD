@@ -6,6 +6,4 @@ Gruppemedlemmer: Arne Kvaleberg, Are Dæhlen, Sivert Lunde, Jokubas Morsund, Mar
 
 Gruppenummer: 30
 
-##
-
-Backup of old code
+## Backup of old code
