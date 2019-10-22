@@ -40,12 +40,13 @@ class ModalBox{
 	}
 	
 	submit(){
-		let title = document.getElementById("tasktext").value;
+		let titletxt = document.getElementById("tasktext").value;
 		let statuslist = document.getElementById("modalstatuslist");
-		let status = statuslist.options[statuslist.selectedIndex].value;
-		
-		if(title !== ""){
-			this.onsubmitCallbacks.forEach((x) => x())
+		let statustxt = statuslist.options[statuslist.selectedIndex].value;
+		let task = { title: titletxt, status: statustxt }
+		console.log(task.title + " " + task.status)
+		if(titletxt !== ""){
+			this.onsubmitCallbacks.forEach((x) => x(task))
 			
 		}
 		this.close();

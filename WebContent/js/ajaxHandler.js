@@ -19,22 +19,19 @@ class ajaxHandler {
 	        }  
 	}
 	
-	async deleteTask(id) {
+	async deleteTask(id, callback) {
 	    const url='../TaskServices/broker/task/' + id
 	    try {
 	        const response = await fetch(url,{method: "DELETE"})
-	        try {
-	        	const json = await response.json()
-	            return json
-	        } catch (error) {
-	            console.log(error)
-	        }
+	        console.log(response)
+	        console.log("Deleted task with id " + id)
+	        callback(id)
 	    } catch (error) {
 	        console.log(error)
 	    }
 	}
 	
-	async modifyStatus(id, status) {
+	async modifyStatus(id, status, callback) {
 	    const url='../TaskServices/broker/task/' + id 
 	    try {
 	        const response = await fetch(url,{
@@ -42,19 +39,14 @@ class ajaxHandler {
 	            headers: {"Content-Type": "application/json; charset=utf-8"},
 	            body: JSON.stringify({'status': status})
 	        })
-	        try {
-	        	const json = await response.json()
-	        	console.log("Det gikk faktisk")
-	            return json
-	        } catch (error) {
-	            console.log(error)
-	        }
+	        console.log("Changed status on task with id " + id + " to " + status)
+	        callback(id, status)
 	    } catch (error) {
 	        console.log(error)
 	    }
 	}
 	
-	async addNewTask(task) {
+	async addNewTask(task, callback) {
 	    const url='../TaskServices/broker/task'
 	    try {
 	        const response = await fetch(url,{
@@ -63,11 +55,12 @@ class ajaxHandler {
 	            body: JSON.stringify({"title":task.title, "status": task.status})
 	        })
 	        try {
-	        	const json = await response.json()
-	            return json
-	        } catch (error) {
-	            console.log(error)
-	        }
+	        	let json = await response.json()
+	        	task.id = json.task.id
+	        	callback(task)
+			} catch (error) {
+				console.log(error)
+			}
 	    } catch (error) {
 	        console.log(error)
 	    }
