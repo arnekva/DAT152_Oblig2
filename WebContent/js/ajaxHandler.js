@@ -1,7 +1,11 @@
 "use strict";
 
 class ajaxHandler {
-	
+	/**
+	 * Returns all statuses
+	 * 
+	 * @async
+	 */
 	async allstatuses() {
 	    const url='../TaskServices/broker/allstatuses'
 
@@ -18,7 +22,11 @@ class ajaxHandler {
 	            console.log(error)
 	        }  
 	}
-	
+	/**
+	 * Deletes a task
+	 * 
+	 * @async
+	 */
 	async deleteTask(id, callback) {
 	    const url='../TaskServices/broker/task/' + id
 	    try {
@@ -30,7 +38,11 @@ class ajaxHandler {
 	        console.log(error)
 	    }
 	}
-	
+	/**
+	 * Modyfies the status of a task
+	 * 
+	 * @async
+	 */
 	async modifyStatus(id, status, callback) {
 	    const url='../TaskServices/broker/task/' + id 
 	    try {
@@ -45,7 +57,11 @@ class ajaxHandler {
 	        console.log(error)
 	    }
 	}
-	
+	/**
+	 * Adds a new task
+	 * 
+	 * @async
+	 */
 	async addNewTask(task, callback) {
 	    const url='../TaskServices/broker/task'
 	    try {
@@ -65,7 +81,11 @@ class ajaxHandler {
 	        console.log(error)
 	    }
 	}
-	
+	/**
+	 * Returns all current tasks in the list
+	 * 
+	 * @async
+	 */
 	async getAllTasks() {
 	    const url='../TaskServices/broker/tasklist'
 	    try {
