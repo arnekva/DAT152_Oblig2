@@ -23,6 +23,7 @@ gui.deleteTaskCallback = (id) => {
 
 gui.newStatusCallback = (id,newStatus) => {
     console.log(`User has approved to change the status of task with id ${id} to ${newStatus}.`)
+    ajax.modifyStatus(id,newStatus)
     gui.updateTask(id,newStatus)
 }
 

@@ -26,9 +26,9 @@ class GuiHandler {
 		let id = task.id
 		let row = this.table.insertRow(0);
 
-		row.insertCell(0).innerHTML = this.table.rows.length;
-		row.insertCell(1).innerHTML = task.title;
-		row.insertCell(2).innerHTML = task.status;
+		row.insertCell(0).innerText = this.table.rows.length;
+		row.insertCell(1).innerText = task.title;
+		row.insertCell(2).innerText = task.status;
 
 		row.className += "radene"
 		row.setAttribute("id", task.id);
@@ -53,17 +53,9 @@ class GuiHandler {
 		   
 		   let cell = row.insertCell(3);
 		   cell.appendChild(selectList);
-		   row.insertCell(4).innerHTML = '<button id="deleteBtn-' + task.id + '" class="delbtn">Delete</button>';
+		   row.insertCell(4).innerHTML = '<button id="deleteBtn-' + task.id + '" class="delbtn" data-taskid=' + task.id + '>Delete</button>';
 
-		   document.getElementById("deleteBtn-" + task.id).addEventListener("click", (e) => {
-			   let txt;
-			   let  r = window.confirm("Do you want to delete this task?")
-			   if (r==true){
-				   this.deleteTaskCallback = task.id
-			   }else{
-				   console.log("Deletion canceled.")
-			   }
-			}, true);
+		   document.getElementById("deleteBtn-" + task.id).addEventListener("click", this.deleteTask.bind(this), true);
 		   selectList.addEventListener("change", this.modifyStatus.bind(this), false)
 	}
 	
@@ -84,17 +76,22 @@ class GuiHandler {
 	
 	updateTask(id,status){
 		let rows = document.getElementsByClassName('radene');
+		console.log(rows)
 		for (let i = 0; i<rows.length; i++){
 			if (rows[i].id == id){
-				rows.childNodes[2].innerText = status
+				rows[i].childNodes[2].innerText = status
 			}
 		}
 	}
 
-	deleteTask(i) {
-		for(let i = 1; i<4; i++){
-			this.deletetaskCallbacks.forEach((x) => x(i))
-		}
+	deleteTask(object) {
+		let id = object.target.dataset.taskid
+		let  r = window.confirm("Do you want to delete this task?")
+		   if (r){
+			   this.deletetaskCallbacks.forEach((x) => x(id))
+		   }else{
+			   console.log("Deletion canceled.")
+		   }
 		
 //		ajax.deleteTask(i)
 //		.then(json => {
@@ -107,20 +104,21 @@ class GuiHandler {
 //		})
 	}
 	
+	removeTask(id){
+		let index = 0;
+		let rows = document.getElementsByClassName('radene');
+		for (let i = 0; i<rows.length; i++){
+			if (rows[i].id == id){
+				index = i;
+			}
+		}
+		this.table.deleteRow(index);
+	}
+	
 }
 
 const ajax = new ajaxHandler()
 const gui = new GuiHandler()
-
-
-function updateStatusChanger(){
-	let test = document.getElementsByClassName('statusChanger')
-	for (var i = 0; i < test.length; i++) {
-	    test[i].onchange = function () {
-			gui.newStatusCallback = this
-	    }	
-	}
-}
 
 
 function setupStatus() {

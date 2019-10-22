@@ -44,6 +44,7 @@ class ajaxHandler {
 	        })
 	        try {
 	        	const json = await response.json()
+	        	console.log("Det gikk faktisk")
 	            return json
 	        } catch (error) {
 	            console.log(error)
