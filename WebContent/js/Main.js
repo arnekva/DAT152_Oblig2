@@ -4,6 +4,10 @@ const ajax = new ajaxHandler()
 const gui = new GuiHandler()
 const modal = document.getElementById("myModal")
 
+ /**
+ * Initial setup of tasklist on loading of page.
+ * Gets statuses and tasks from database using ajaxhandler.
+ */
 async function setup(){
 	const statusesJson = await ajax.allstatuses()
 	const statuses = statusesJson.allstatuses
