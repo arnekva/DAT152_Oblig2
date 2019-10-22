@@ -32,7 +32,6 @@ class ajaxHandler {
 	    const url='../TaskServices/broker/task/' + id
 	    try {
 	        const response = await fetch(url,{method: "DELETE"})
-	        console.log(response)
 	        console.log("Deleted task with id " + id)
 	        callback(id)
 	    } catch (error) {

@@ -38,14 +38,11 @@ class ModalBox{
 		let modal = document.getElementById("myModal")
 		let selectstatus = document.getElementById("modalstatuslist")
 		if(selectstatus.length < 1) {
-			console.log("Appending child elements for dropdown")
 			for (let i = 0; i<this._allstatuses.length; i++){
 				let op = document.createElement("option");
 				op.innerText = this._allstatuses[i];
 				selectstatus.appendChild(op);
 			}
-		}else{
-			console.log("Select list child elements have already been created")
 		}
 		modal.style.display = "block";
 	}
@@ -57,7 +54,6 @@ class ModalBox{
 		let statuslist = document.getElementById("modalstatuslist");
 		let statustxt = statuslist.options[statuslist.selectedIndex].value;
 		let task = { title: titletxt, status: statustxt }
-		console.log(task.title + " " + task.status)
 		if(titletxt !== ""){
 			this.onsubmitCallbacks.forEach((x) => x(task))
 			
