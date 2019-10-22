@@ -127,7 +127,6 @@ class GuiHandler {
 	removeTask(id){
 		let index = 0
 		let rows = document.getElementsByClassName('radene')
-		console.log(rows)
 		for (let i = 0; i<rows.length; i++){
 			if (rows[i].id == id){
 				index = i

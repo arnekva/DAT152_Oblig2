@@ -22,7 +22,7 @@ async function setup(){
 
 	gui.deleteTaskCallback = (id) => {
 	    console.log(`User has approved the deletion of task with id ${id}.`)
-	    ajax.deleteTask(id, gui.removeTask)
+	    ajax.deleteTask(id, gui.removeTask.bind(gui))
 	} 
 
 	gui.newStatusCallback = (id,newStatus) => {
