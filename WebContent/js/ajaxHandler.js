@@ -24,7 +24,8 @@ class ajaxHandler {
 	}
 	/**
 	 * Deletes a task
-	 * 
+	 * @param id The task ID
+	 * @param callback Callback function to be run
 	 * @async
 	 */
 	async deleteTask(id, callback) {
@@ -40,7 +41,9 @@ class ajaxHandler {
 	}
 	/**
 	 * Modyfies the status of a task
-	 * 
+	 * @param id The id of the task
+	 * @param status The new status
+	 * @param callback Callback function to be run
 	 * @async
 	 */
 	async modifyStatus(id, status, callback) {
@@ -60,6 +63,8 @@ class ajaxHandler {
 	/**
 	 * Adds a new task
 	 * 
+	 * @param task Task
+	 * @param callback Function to be called
 	 * @async
 	 */
 	async addNewTask(task, callback) {
